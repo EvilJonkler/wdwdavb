@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Backrooms</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+/* BACKGROUND */
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+        linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.95)),
+        url("https://hips.hearstapps.com/hmg-prod/images/screenshot-2026-02-26-at-10-18-37-am-69a0645189464.png?crop=0.9555555555555556xw:1xh;0,0.0179xh");
+
+    background-size:cover;
+    background-position:center;
+    color:white;
+}
+
+/* CARD */
+.card{
+    width:900px;
+    max-width:95%;
+    background:rgba(20,20,20,0.85);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    padding:40px;
+    box-shadow:0 20px 60px rgba(0,0,0,.8);
+    animation:fadeIn 1.2s ease;
+}
+
+h1{
+    font-size:4rem;
+    letter-spacing:3px;
+    margin-bottom:10px;
+}
+
+p{
+    color:#ddd;
+    line-height:1.6;
+}
+
+.stats{
+    display:flex;
+    gap:15px;
+    margin:20px 0;
+    flex-wrap:wrap;
+}
+
+.stat{
+    background:rgba(255,255,255,0.1);
+    padding:10px 15px;
+    border-radius:12px;
+}
+
+/* PLAY BUTTON */
+.play-btn{
+    background:white;
+    color:black;
+    border:none;
+    padding:15px 30px;
+    border-radius:12px;
+    font-size:1rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.play-btn:hover{
+    transform:scale(1.05);
+}
+
+/* OVERLAY */
+#overlay{
+    position:fixed;
+    inset:0;
+    background:black;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+    animation:fadeIn 0.6s ease;
+}
+
+/* VHS GLITCH EFFECT */
+.glitch{
+    position:absolute;
+    inset:0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,0.03),
+            rgba(255,255,255,0.03) 1px,
+            transparent 1px,
+            transparent 2px
+        );
+    animation:glitchMove 0.2s infinite;
+    pointer-events:none;
+}
+
+/* CLOSE BUTTON */
+.close-btn{
+    position:absolute;
+    top:20px;
+    right:20px;
+    background:rgba(255,255,255,0.15);
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+    z-index:1000;
+}
+
+/* LINK BUTTON */
+.yt-link{
+    color:white;
+    font-size:1.5rem;
+    text-decoration:none;
+    background:rgba(255,255,255,0.1);
+    padding:20px 30px;
+    border-radius:15px;
+    z-index:1000;
+}
+
+.yt-link:hover{
+    transform:scale(1.05);
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(1.05);}
+    to{opacity:1; transform:scale(1);}
+}
+
+@keyframes glitchMove{
+    0%{transform:translate(0,0);}
+    25%{transform:translate(-2px,2px);}
+    50%{transform:translate(2px,-2px);}
+    75%{transform:translate(-1px,1px);}
+    100%{transform:translate(0,0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>THE BACKROOMS</h1>
+
+    <p>
+        A found-footage horror experience where reality collapses into endless yellow corridors.
+    </p>
+
+    <div class="stats">
+        <div class="stat">⭐ IMDb 9.3</div>
+        <div class="stat">⏱ 1h 50m</div>
+        <div class="stat">👁 Horror</div>
+    </div>
+
+    <button class="play-btn" onclick="openVideo()">▶ Play</button>
+</div>
+
+<!-- OVERLAY -->
+<div id="overlay">
+    <div class="glitch"></div>
+
+    <button class="close-btn" onclick="closeVideo()">✕ Close</button>
+
+    <a class="yt-link"
+       href="https://www.youtube.com/watch?v=AV-gFQG5nb0"
+       target="_blank">
+       ▶ Click to Watch on YouTube
+    </a>
+</div>
+
+<script>
+function openVideo(){
+    const overlay = document.getElementById("overlay");
+
+    overlay.style.display = "flex";
+
+    // fake VHS delay effect
+    setTimeout(() => {
+        document.querySelector(".yt-link").style.transform = "scale(1.1)";
+    }, 300);
+}
+
+function closeVideo(){
+    document.getElementById("overlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
